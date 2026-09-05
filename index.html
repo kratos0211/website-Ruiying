@@ -409,7 +409,7 @@
                 card.innerHTML = `
                     <div class="group relative aspect-[16/9] overflow-hidden rounded-[2rem] bg-gray-100 cursor-pointer" 
                          onclick="openLightbox(${index})">
-                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" data-stage="jpg" onerror="if (this.dataset.stage === 'jpg') { this.dataset.stage = 'jpeg'; this.src = '${item.fallback || 'https://via.placeholder.com/800x450?text=圖片路徑失效'}'; } else { this.src = 'https://via.placeholder.com/800x450?text=圖片路徑失效'; }">
+                        <img src="${item.img}" alt="${item.title}" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.onerror = null; this.src = 'https://via.placeholder.com/800x450?text=圖片路徑失效';">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-10">
                             <span class="text-blue-400 font-bold mb-2 uppercase tracking-widest text-xs">${item.category}</span>
                             <h5 class="text-white text-2xl font-black">${item.title}</h5>
