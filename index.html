@@ -423,10 +423,22 @@
         const lbImg = document.getElementById('lightbox-img');
         const lbTitle = document.getElementById('lightbox-title');
 
+        function setLightboxImage(item) {
+            lbImg.onerror = () => {
+                if (item.fallback && lbImg.src !== new URL(item.fallback, document.baseURI).href) {
+                    lbImg.src = item.fallback;
+                } else {
+                    lbImg.onerror = null;
+                    lbImg.src = 'https://via.placeholder.com/800x450?text=圖片路徑失效';
+                }
+            };
+            lbImg.src = item.img;
+        }
+
         function openLightbox(index) {
             currentLightboxIndex = index;
             const item = currentItemsToRender[index];
-            lbImg.src = item.img;
+            setLightboxImage(item);
             lbTitle.innerText = item.title;
             lightbox.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -450,7 +462,7 @@
             }
             
             const item = currentItemsToRender[currentLightboxIndex];
-            lbImg.src = item.img;
+            setLightboxImage(item);
             lbTitle.innerText = item.title;
         }
 
