@@ -322,9 +322,22 @@
 
     <script>
         // --- 作品集數據配置 ---
-        const stickerVideoNumbers = new Set([22, 27, 31, 33, 35, 37, 39, 41, 45, 57, 60, 62, 66, 68, 70, 72]);
-        const stickerImageNumbers = Array.from({ length: 85 }, (_, i) => 85 - i)
-            .filter(num => !stickerVideoNumbers.has(num));
+        const stickerImageFiles = [
+            'sticker85.jpg', 'sticker84.jpg', 'sticker83.jpg', 'sticker82.jpg', 'sticker81.jpg',
+            'sticker80.jpg', 'sticker79.jpg', 'sticker78.jpg', 'sticker77.jpg', 'sticker76.jpg',
+            'sticker75.jpg', 'sticker74.jpg', 'sticker73.jpg', 'sticker71.jpg', 'sticker69.jpg',
+            'sticker67.jpg', 'sticker65.jpg', 'sticker64.jpg', 'sticker63.jpg', 'sticker61.jpg',
+            'sticker59.jpg', 'sticker58.jpg', 'sticker56.jpg', 'sticker55.jpg', 'sticker54.jpg',
+            'sticker53.jpg', 'sticker52.jpg', 'sticker51.jpg', 'sticker50.jpg', 'sticker49.jpg',
+            'sticker48.jpg', 'sticker47.jpg', 'sticker46.jpg', 'sticker44.jpg', 'sticker43.jpg',
+            'sticker42.jpg', 'sticker40.jpg', 'sticker38.jpg', 'sticker36.jpg', 'sticker34.jpg',
+            'sticker32.jpg', 'sticker30.jpg', 'sticker29.jpg', 'sticker28.jpg', 'sticker26.jpg',
+            'sticker25.jpg', 'sticker24.jpg', 'sticker23.jpg', 'sticker21.jpg', 'sticker20.jpg',
+            'sticker19.jpg', 'sticker18.jpeg', 'sticker17.jpeg', 'sticker16.jpeg', 'sticker15.jpeg',
+            'sticker14.jpeg', 'sticker13.jpeg', 'sticker12.jpeg', 'sticker11.jpeg', 'sticker10.jpeg',
+            'sticker9.jpeg', 'sticker8.jpeg', 'sticker7.jpeg', 'sticker6.jpeg', 'sticker5.jpeg',
+            'sticker4.jpeg', 'sticker3.jpeg', 'sticker2.jpeg', 'sticker1.jpeg'
+        ];
 
         const portfolioData = {
             led: Array.from({length: 23}, (_, i) => ({
@@ -348,14 +361,16 @@
                 type: 'print',
                 img: `asset/images/banner/banner${i+1}.jpeg`
             })),
-            furniture: stickerImageNumbers.map(num => ({
+            furniture: stickerImageFiles.map(filename => {
+                const num = filename.match(/\d+/)[0];
+                return {
                 id: `furniture-${num}`,
                 title: `傢俬翻新貼膜案例 ${num}`,
                 category: '傢俬翻新貼膜',
                 type: 'furniture',
-                img: `asset/images/stickers/sticker${num}.jpg`,
-                fallback: `asset/images/stickers/sticker${num}.jpeg`
-            })),
+                img: `asset/images/stickers/${filename}`
+                };
+            }),
             site: Array.from({length: 21}, (_, i) => ({
                 id: `site-${i+1}`,
                 title: `實地工作現場 ${i+1}`,
